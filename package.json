@@ -1,0 +1,34 @@
+{
+  "name": "ui-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "groupId": "com.wellsfargo.1ibms",
+  "scripts": {
+    "dev": "npm run build:local:client && concurrently --kill-others-on-fail -n \"SERVER,CLIENT,RELOAD\" -c \"blue,green,magenta\" \"npm run dev:server\" \"npm run dev:client\" \"npm run dev:reload\"",
+    "dev:with:built:server": "npm run build:server && npm run build:local:client && concurrently --kill-others-on-fail -n \"SERVER,CLIENT,RELOAD\" -c \"blue,green,magenta\" \"cross-env ENABLE_LIVE_RELOAD=true node public/index.js\" \"npm run dev:client\" \"npm run dev:reload\"",
+    "dev:with:built:client": "npm run build:local:client && concurrently --kill-others-on-fail -n \"SERVER,RELOAD\" -c \"blue,magenta\" \"npm run dev:server\" \"npm run dev:reload\"",
+    "dev:server": "cd ./server && cross-env ENABLE_LIVE_RELOAD=true npm run dev",
+    "dev:client": "cd ./client && npm run build:local:watch",
+    "dev:reload": "node ./server/live-reload.js",
+    "install": "concurrently --raw -n \"SERVER,CLIENT\" -c \"blue,green\" \"cd ./server && npm install\" \"cd ./client && npm install\"",
+    "start": "node public/index.js",
+    "build": "npm run build:clean && npm run build:server && npm run build:client",
+    "build:local:client": "cd ./client && npm run build:local",
+    "build:clean": "rimraf public/",
+    "build:server": "cd ./server && npm run build",
+    "build:client": "cd ./client && npm run build",
+    "pack": "npm pack --loglevel warn",
+    "test": "npm run test:server && npm run test:client",
+    "test:server": "cd ./server && npm run test",
+    "test:client": "cd ./client && npm run test",
+    "test:e2e": "npx @playwright/test test"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "8.2.2",
+    "cross-env": "7.0.3",
+    "rimraf": "5.0.5",
+    "@playwright/test": "1.51.0"
+  }
+}

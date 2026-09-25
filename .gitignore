@@ -1,0 +1,25 @@
+node_modules
+dist
+coverage
+.env
+public/*
+/server/certificates
+/client/junit.xml
+/server/junit.xml
+
+# Local environment overrides (keep shareable templates)
+.env.*
+!.env.example
+!.env.sample
+
+# Generated test reports and caches
+playwright-report/
+test-results/
+blob-report/
+.cache/
+*.tsbuildinfo
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
