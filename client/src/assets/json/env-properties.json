@@ -1,0 +1,5 @@
+{
+  "OAUTH_CLIENT_ID": "REACTPRO_CLIENTID",
+  "MICROSERVICE_URL": "https://reactpro-backend-apis.wellsfargo.net",
+  "LOGGING_SERVER_URL": "http://localhost:8080"
+}

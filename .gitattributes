@@ -1,1 +1,17 @@
-* linguist-language=Typescript
+# Detect text files automatically and use LF line endings.
+* text=auto eol=lf
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+
+# Documents
+*.pdf binary
+
+# Fonts
+*.woff binary
+*.woff2 binary

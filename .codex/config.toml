@@ -1,0 +1,16 @@
+# Project-scoped MCP servers. Start Codex from this repository.
+# Dependencies are installed ahead of time; startup never uses npx to download them.
+[mcp_servers.playwright]
+command = "node"
+args = ["node_modules/@playwright/mcp/cli.js", "--browser", "msedge", "--headless", "--isolated"]
+startup_timeout_sec = 30
+
+[mcp_servers.react]
+command = "node"
+args = ["tooling/run-react-mcp.mjs"]
+startup_timeout_sec = 30
+
+[mcp_servers.mui]
+command = "node"
+args = ["node_modules/@mui/mcp/stdio.js"]
+startup_timeout_sec = 30

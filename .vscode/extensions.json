@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "Checkmarx.cxvscode",
+    "DavidAnson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "GitHub.vscode-pull-request-github",
+    "ms-playwright.playwright",
+    "orta.vscode-jest",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "stylelint.vscode-stylelint"
+  ]
+}

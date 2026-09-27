@@ -1,0 +1,46 @@
+{
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "css.validate": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.fixAll.stylelint": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.workingDirectories": ["."],
+  "files.associations": {
+    ".browserslistrc": "plaintext",
+    "CODEOWNERS": "plaintext"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "jest.virtualFolders": [
+    {
+      "jestCommandLine": "npm test --",
+      "name": "client",
+      "rootPath": "client",
+      "runMode": "on-demand"
+    },
+    {
+      "jestCommandLine": "npm test -- --runInBand",
+      "name": "server",
+      "rootPath": "server",
+      "runMode": "on-demand"
+    }
+  ],
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
+  "prettier.requireConfig": true,
+  "scss.validate": false,
+  "search.exclude": {
+    "**/package-lock.json": true
+  },
+  "stylelint.lintFiles.glob": "client/src/**/*.{css,scss}",
+  "stylelint.validate": ["css", "scss"]
+}

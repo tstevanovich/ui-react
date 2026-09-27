@@ -1,9 +1,10 @@
-import { Server } from "http";
-import { createLogger } from "@wf/node-microservice-lib";
+import { createLogger } from '@wf/node-microservice-lib';
+import dotenv from 'dotenv';
+import type { Server } from 'http';
 
-import appPromise from "./app";
+import appPromise from './app';
 
-require("dotenv").config();
+dotenv.config();
 
 const logger = createLogger();
 
@@ -11,7 +12,7 @@ let server: Server;
 
 const PORT = process.env.PORT || 8080;
 
-(async () => {
+void (async () => {
   try {
     const app = await appPromise();
 
@@ -40,11 +41,11 @@ const unexpectedErrorHandler = (error: string) => {
   exitHandler(error);
 };
 
-process.on("uncaughtException", unexpectedErrorHandler);
-process.on("unhandledRejection", unexpectedErrorHandler);
+process.on('uncaughtException', unexpectedErrorHandler);
+process.on('unhandledRejection', unexpectedErrorHandler);
 
-process.on("SIGTERM", () => {
-  logger.info("SIGTERM received");
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received');
   if (server) {
     server.close();
   }

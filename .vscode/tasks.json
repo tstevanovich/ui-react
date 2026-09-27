@@ -1,0 +1,71 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Quality: all checks",
+      "type": "npm",
+      "script": "check",
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Quality: lint",
+      "type": "npm",
+      "script": "lint",
+      "problemMatcher": ["$eslint-stylish"]
+    },
+    {
+      "label": "Quality: typecheck",
+      "dependsOn": ["Typecheck: client", "Typecheck: server", "Typecheck: tooling"],
+      "dependsOrder": "sequence",
+      "problemMatcher": []
+    },
+    {
+      "label": "Typecheck: client",
+      "type": "npm",
+      "script": "typecheck",
+      "path": "client",
+      "problemMatcher": [
+        {
+          "base": "$tsc",
+          "fileLocation": ["relative", "${workspaceFolder}/client"]
+        }
+      ]
+    },
+    {
+      "label": "Typecheck: server",
+      "type": "npm",
+      "script": "typecheck",
+      "path": "server",
+      "problemMatcher": [
+        {
+          "base": "$tsc",
+          "fileLocation": ["relative", "${workspaceFolder}/server"]
+        }
+      ]
+    },
+    {
+      "label": "Typecheck: tooling",
+      "type": "process",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/node_modules/typescript/bin/tsc",
+        "-p",
+        "tsconfig.tools.json",
+        "--noEmit",
+        "--pretty",
+        "false"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": ["$tsc"]
+    },
+    { "label": "Format: write changes", "type": "npm", "script": "format", "problemMatcher": [] },
+    {
+      "label": "Run application",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "servers": {
+    "playwright": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        "${workspaceFolder}/node_modules/@playwright/mcp/cli.js",
+        "--browser",
+        "msedge",
+        "--headless",
+        "--isolated"
+      ],
+      "cwd": "${workspaceFolder}"
+    },
+    "react": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/tooling/run-react-mcp.mjs"],
+      "cwd": "${workspaceFolder}"
+    },
+    "mui": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${workspaceFolder}/node_modules/@mui/mcp/stdio.js"],
+      "cwd": "${workspaceFolder}"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "watch": ["src"],
+  "ext": "ts,js",
+  "exec": "ts-node ./src/index.ts",
+  "events": {
+    "restart": "node -e \"const fs=require('fs');const path=require('path');const dir=path.resolve(process.cwd(),'../public/client');const file=path.join(dir,'live-reload.json');fs.mkdirSync(dir,{recursive:true});fs.writeFileSync(file,JSON.stringify({ts:Date.now()}));\""
+  },
+  "env": {
+    "WEB_APP_ROOT": "../public/client"
+  }
+}

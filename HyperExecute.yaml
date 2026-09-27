@@ -1,4 +1,4 @@
-version: "0.1"
+version: '0.1'
 
 image: playwrightjs
 
@@ -11,10 +11,10 @@ alwaysRunPostSteps: true
 concurrency: 1
 
 env:
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-    HTTP_PROXY: "http://proxy.wellsfargo.com:8080"
-    HTTPS_PROXY: "http://proxy.wellsfargo.com:8080"
-    NODE_TLS_REJECT_UNAUTHORIZED: "0"
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+  HTTP_PROXY: 'http://proxy.wellsfargo.com:8080'
+  HTTPS_PROXY: 'http://proxy.wellsfargo.com:8080'
+  NODE_TLS_REJECT_UNAUTHORIZED: '0'
 
 cacheKey: '{{ checksum "package.json" }}'
 cacheDirectories:
@@ -32,7 +32,6 @@ globalPre:
     - npm config set registry https://artifactory.wellsfargo.com/artifactory/api/npm/npm-lqed-virtual/
     - npm i
 
-
 uploadArtefacts:
   - name: PW Reports
     path:
@@ -41,13 +40,13 @@ uploadArtefacts:
 # Enable report generation
 report: true
 partialReports:
-    frameworkName: ""
-    #frameworkName: playwright
-    location: playwright-report
-    type: html
-    #email:
-     #   to:
-      #    - mohana.moorkodi@wellsfargo.com
+  frameworkName: ''
+  #frameworkName: playwright
+  location: playwright-report
+  type: html
+  #email:
+  #   to:
+  #    - mohana.moorkodi@wellsfargo.com
 
 testDiscovery:
   type: raw
@@ -59,6 +58,5 @@ testRunnerCommand: npx playwright test tests/tests/sampleTest.spec.ts
 
 post:
   - ls -la
-
 
 jobLabel: [playwrightTS]

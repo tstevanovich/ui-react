@@ -1,0 +1,6 @@
+{
+  "icons": [
+    { "src": "/favicons/icon-normal_128x128.png", "type": "image/png", "sizes": "128x128" },
+    { "src": "/favicons/icon-hires_192x192.png", "type": "image/png", "sizes": "192x192" }
+  ]
+}

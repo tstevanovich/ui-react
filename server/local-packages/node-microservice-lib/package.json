@@ -1,0 +1,23 @@
+{
+  "name": "@wf/node-microservice-lib",
+  "version": "7.0.3-local.0",
+  "private": true,
+  "description": "Local no-auth subset reconstructed from supplied Orchestra source",
+  "main": "./dist/cjs/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/cjs/index.js"
+    }
+  },
+  "files": ["dist", "README.local.md"],
+  "peerDependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.2",
+    "express": "^5.2.1",
+    "helmet": "^7.1.0",
+    "morgan": "^1.11.0",
+    "winston": "^3.18.3"
+  }
+}

@@ -1,0 +1,16 @@
+**/node_modules/
+**/local-packages/
+**/dist/
+**/coverage/
+public/
+playwright-report/
+test-results/
+client/src/assets/vendor/
+**/package-lock.json
+**/junit.xml
+.cache/
+.playwright-mcp/
+.env
+**/.env
+.env.*
+**/.env.*

@@ -1,31 +1,49 @@
-# Documentation
+# Local React development
+
+The application now has a local no-auth server, shared lint/format/style checks,
+unit/integration/browser tests, and project guidance for Codex and GitHub Copilot.
+
+Start with the [development guide](docs/DEVELOPMENT.md),
+[React learning path](docs/REACT-LEARNING.md), and [AI/MCP workflow](docs/AI-WORKFLOW.md).
+
+From the repository root, use `npm.cmd run dev` to run the app at
+<http://localhost:8080>, `npm.cmd run check` for quality checks, and
+`npm.cmd run test:e2e` for a fresh build plus browser tests.
+
+The WF packages are local reconstructions with documented limitations. This is not
+a production authentication setup. The following starter documentation is retained
+for its original corporate context; internal services are not required for local checks.
+
+## Original starter documentation
 
 ## I'm new here, how do I get started?
 
 ### Setting up your local environment
 
 Check out the following guide to set up your local environment:
-https://confluence.wellsfargo.net/display/OR/Configuring+your+Environment
+<https://confluence.wellsfargo.net/display/OR/Configuring+your+Environment>
 
 ### Component Identification Number (CIN)
+
 CIN will only be provided when the component is being onboarded to CICD.
 You will need to generate a github repo with Orchestra.
-Once a repo is generated, you can retrieve this information from https://orchestra.cfapps.wellsfargo.net/#/developerdashboard/Components
+Once a repo is generated, you can retrieve this information from <https://orchestra.cfapps.wellsfargo.net/#/developerdashboard/Components>
 
 ### Brand new to Node.js
 
-If you're brand new to Node, check out https://nodejs.org/en to learn about the overall concepts.
+If you're brand new to Node, check out <https://nodejs.org/en> to learn about the overall concepts.
 
 ### Brand new to React
 
-If you're brand new to React, check out https://react.dev/ to learn about the overall concepts and how to program in it.
+If you're brand new to React, check out <https://react.dev/> to learn about the overall concepts and how to program in it.
 
 ### Running into Issues?
 
 Engage with the Orchestra team by opening an Engagement Ticket at our [Service Project](https://wim-jira.wellsfargo.com/servicedesk/customer/portal/13104).
 
 ## Run in local
-Access your application at http://localhost:8080 with one of the following commands:
+
+Access your application at <http://localhost:8080> with one of the following commands:
 
 ### Live Reload (client + server)
 
@@ -34,6 +52,7 @@ npm run dev
 ```
 
 Pre-builds the client, then starts three concurrent processes:
+
 - **SERVER** — Node.js server via nodemon (auto-restarts on server source changes)
 - **CLIENT** — webpack in watch mode (rebuilds client on source changes)
 - **RELOAD** — LiveReload server on port 35729 (triggers browser refresh after each rebuild or server restart)
@@ -58,18 +77,22 @@ Builds the client once, then runs the server via nodemon with LiveReload. Use th
 
 ~
 Here are some useful links on OpenShift(OCP) deployment.
+
 - [What is OpenShift](https://confluence.wellsfargo.net/display/OCP/Home).
 - [OpenShift Onboarding](https://confluence.wellsfargo.net/display/OCP/OpenShift+Onboarding)
 
 ~
 ~
+
 ### My Jenkins/Gitub SaaS job is failing, what do I do?
+
 Raise an engagement request to the [DevOps Team](https://wim-jira.wellsfargo.com/servicedesk/customer/portal/12139/) to see if they can resolve it. If it works in local, there's probably an issue in Build Platform.
 If that doesn't work, open an engagement ticket with the [Orchestra team](https://wim-jira.wellsfargo.com/servicedesk/customer/portal/13104).
 
 ### Threadfix and SWCA Onboarding
 
 REQUIRED: As ELMA does not automatically setup Threadfix and Black Duck (SWCA), follow this guide to set them set up:
+
 - [How to Onboard Repo to the ThreadFix and SWCA](https://confluence.wellsfargo.net/pages/viewpage.action?pageId=745664325)
 
 ## Library Source Code

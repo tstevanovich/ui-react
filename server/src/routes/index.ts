@@ -1,5 +1,6 @@
-import express from "express";
-import { clientLogsHandler } from "../controller/logger.controller";
+import express from 'express';
+
+import { clientLogsHandler } from '../controller/logger.controller';
 
 const router = express.Router();
 
@@ -36,6 +37,6 @@ router.get('/healthcheck', (req, res) => res.sendStatus(200));
  *      500:
  *        description: Returns error message
  */
-router.post("/clientlogs", clientLogsHandler);
+router.post('/clientlogs', clientLogsHandler);
 
 export default router;

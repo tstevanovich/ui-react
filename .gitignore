@@ -1,5 +1,8 @@
+# Shared rules for the root, client, and server packages
 node_modules
 dist
+!client/local-packages/@wf/react-library/dist/
+!server/local-packages/node-microservice-lib/dist/
 coverage
 .env
 public/*
@@ -17,6 +20,7 @@ playwright-report/
 test-results/
 blob-report/
 .cache/
+.playwright-mcp/
 *.tsbuildinfo
 *.log
 

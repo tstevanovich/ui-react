@@ -1,27 +1,26 @@
-import {
-  OrchestraSessionConfigOptions,RedisConfig,
-  WebAppConfig,WebAppAuthConfig,
-  createApp,
-  createLogger,
-  readPackageJson,
-} from "@wf/node-microservice-lib";
-import apm from "elastic-apm-node";
-import { NextFunction, Request, Response } from "express";
-import path from "path";
+import type {
+  OrchestraSessionConfigOptions,
+  WebAppAuthConfig,
+  WebAppConfig
+} from '@wf/node-microservice-lib';
+import { createApp, createLogger, readPackageJson } from '@wf/node-microservice-lib';
+import dotenv from 'dotenv';
+import apm from 'elastic-apm-node';
+import type { NextFunction, Request, Response } from 'express';
+import path from 'path';
 
-import routes from "./routes";
+import routes from './routes';
 
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const webAppRootEnv = process.env.WEB_APP_ROOT;
 if (!webAppRootEnv) {
-  throw new Error("Missing required WEB_APP_ROOT in environment (.env)");
+  throw new Error('Missing required WEB_APP_ROOT in environment (.env)');
 }
 const webAppRoot = path.resolve(process.cwd(), webAppRootEnv);
+process.env.WEB_APP_ROOT = webAppRoot;
 
-type AdditionalCspSources = NonNullable<
-  NonNullable<WebAppConfig["csp"]>["additionalSources"]
->;
+type AdditionalCspSources = NonNullable<NonNullable<WebAppConfig['csp']>['additionalSources']>;
 
 const appPromise = async () => {
   const packageJSONData = getPackageJson();
@@ -51,14 +50,14 @@ const appPromise = async () => {
   //   !!process.env["VENAFI_CERTIFICATE_PASSWORD"];
 
   const sessionConfig: OrchestraSessionConfigOptions = {
-    secret: process.env["SESSION_SECRET"] || "default",
+    secret: process.env['SESSION_SECRET'] || 'default',
     resave: false,
     saveUninitialized: false,
     // store: enableRedis ? await getRedisStore(redisConfig) : undefined,
     // useRedisStore: true,
     cookie: {
-      maxAge: SESSSION_TIMEOUT,
-    },
+      maxAge: SESSSION_TIMEOUT
+    }
   };
 
   // const apiXchangeClientId = process.env["API_XCHANGE_CLIENT_ID"];
@@ -72,39 +71,41 @@ const appPromise = async () => {
   //     : undefined;
 
   const authConfig: WebAppAuthConfig = {
-    oAuthUrl: process.env["AUTH_URL"] || undefined,
-    redirectUrl: process.env["AUTH_REDIRECT_URL"]+(process.env["AUTH_REDIRECT_ROUTE"] || "/auth/redirect"),
-    provider: "ping",
-    clientId: process.env["AUTH_CLIENT_ID"],
-    clientSecret: process.env["AUTH_CLIENT_SECRET"],
+    oAuthUrl: process.env['AUTH_URL'] || undefined,
+    redirectUrl:
+      process.env['AUTH_REDIRECT_URL'] + (process.env['AUTH_REDIRECT_ROUTE'] || '/auth/redirect'),
+    provider: 'ping',
+    clientId: process.env['AUTH_CLIENT_ID'],
+    clientSecret: process.env['AUTH_CLIENT_SECRET'],
     // customAuthenticationScopes: ["EBSSH_ORCHESTRA"],
     serviceCallsConfig: {
       apixchange: {
-        clientId: process.env["API_XCHANGE_CLIENT_ID"],
-        clientSecret: process.env["API_XCHANGE_CLIENT_SECRET"],
+        clientId: process.env['API_XCHANGE_CLIENT_ID'],
+        clientSecret: process.env['API_XCHANGE_CLIENT_SECRET']
       },
-      sendAccessTokensToClient: true,
+      sendAccessTokensToClient: true
     }
   };
 
-  const isAuthClientIsSetup = process.env["AUTH_CLIENT_ID"] && process.env["AUTH_CLIENT_SECRET"] ? true : false;
+  const isAuthClientIsSetup =
+    process.env['AUTH_CLIENT_ID'] && process.env['AUTH_CLIENT_SECRET'] ? true : false;
 
   const additionalCspSources: AdditionalCspSources = {
     // Add non-live-reload sources here as needed.
   };
 
-  if (process.env["APP_ENV"] === "local") {
+  if (process.env['APP_ENV'] === 'local') {
     additionalCspSources.script = [
       ...(additionalCspSources.script ?? []),
-      "http://localhost:35729",
-      "https://localhost:35729",
+      'http://localhost:35729',
+      'https://localhost:35729'
     ];
     additionalCspSources.connect = [
       ...(additionalCspSources.connect ?? []),
-      "http://localhost:35729",
-      "https://localhost:35729",
-      "ws://localhost:35729",
-      "wss://localhost:35729",
+      'http://localhost:35729',
+      'https://localhost:35729',
+      'ws://localhost:35729',
+      'wss://localhost:35729'
     ];
   }
 
@@ -114,14 +115,14 @@ const appPromise = async () => {
     acin: '1IBMS-A202SC',
     cin: 'A202SC',
     componentName: '1ibms-ui-react',
-    appEnv: process.env["APP_ENV"] || "local",
+    appEnv: process.env['APP_ENV'] || 'local',
     auth: isAuthClientIsSetup ? authConfig : undefined,
     artifactId: '1ibms-ui-react',
     packageJson: packageJSONData,
     sessionConfig: isAuthClientIsSetup ? sessionConfig : undefined,
     csp: {
-      additionalSources: additionalCspSources,
-    },
+      additionalSources: additionalCspSources
+    }
     // redisConfig,
     // venafiCertificateConfig: enableVenafi
     //   ? {
@@ -143,20 +144,21 @@ const appPromise = async () => {
 
   const app = await createApp(config);
 
-  const ROOT_URL = process.env.ROOT_URL || "/";
+  const ROOT_URL = process.env.ROOT_URL || '/';
 
   // api routes
   app.use(ROOT_URL, routes);
 
   // error handler
-  app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-    logger.error(err.stack);
-    apm.captureError(err);
-    res.status(500).send("An error occurred. Please try again later.");
+  app.use((err: unknown, _req: Request, res: Response, _next: NextFunction) => {
+    const error = err instanceof Error ? err : new Error(String(err));
+    logger.error(error.stack ?? error.message);
+    apm.captureError(error);
+    res.status(500).send('An error occurred. Please try again later.');
   });
 
-  app.get("/{*any}", (req: Request, res: Response) => {
-    res.sendFile(path.resolve(__dirname, process.env.WEB_APP_ROOT, "index.html"));
+  app.get('/{*any}', (req: Request, res: Response) => {
+    res.sendFile(path.join(webAppRoot, 'index.html'));
   });
 
   return app;
@@ -164,9 +166,9 @@ const appPromise = async () => {
 
 export default appPromise;
 
-export function getPackageJson(): any {
-  const buildModePath = path.join(__dirname, "./", "package.json");
-  const devModePath = path.join(__dirname, "../", "package.json");
+export function getPackageJson(): Record<string, unknown> {
+  const buildModePath = path.join(__dirname, './', 'package.json');
+  const devModePath = path.join(__dirname, '../', 'package.json');
 
   return readPackageJson(buildModePath, devModePath);
 }

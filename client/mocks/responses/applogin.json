@@ -1,0 +1,30 @@
+{
+  "profile": {
+    "sub": "u000000",
+    "cssn": "LastName",
+    "csstreetaddress": "800 WALNUT ST",
+    "csphycialdeliveryofficename": "ABCD-080",
+    "cswfcaccounttype": "N",
+    "csdisplayname": "America, Joe",
+    "cswfcemplid": "3213231",
+    "cswfcaccountingunit": "1321323123",
+    "csuserprincipalname": "31232313@msgqa.wellsfargo.com",
+    "cswfcelid": "u000000",
+    "csdn": "CN=Joe America,OU=Support,OU=Users,OU=APD,OU=DTC,OU=ENT,DC=ent,DC=wfb,DC=bank,DC=qa",
+    "cspostalcode": "50309",
+    "cscn": "Joe America",
+    "csgivenname": "Joe",
+    "cssamaccountname": "u000000",
+    "csgroups": [
+      "DTCA_CFG_CTO_EBSSH_ORCHESTRA_ADMIN_PORTAL",
+      "DTCA_CFG_CTO_EBSSH_ORCHESTRA_CONTRIBUTORS"
+    ],
+    "cstelephonenumber": "(515) 515-0000",
+    "csl": "DES MOINES",
+    "csst": "IA"
+  },
+  "accessToken": "<UNREADABLE_TOKEN>",
+  "refreshToken": "<UNREADABLE_TOKEN>",
+  "csrfToken": "<UNREADABLE_TOKEN>",
+  "apiXchangeAccessToken": "<UNREADABLE_TOKEN>"
+}
