@@ -120,7 +120,7 @@ with its index.cjs, LICENSE, and source.json alongside the locked root dependenc
   It is unsuitable for measuring this React 19 app. Use project tests and Playwright
   for app validation; do not follow the experimental tool's suggestion to benchmark
   every change. Its performance and component-tree tools are not validated here.
-- MUI fetches a catalog from https://chat-backend.mui.com at startup. Documentation
+- MUI fetches a catalog from <https://chat-backend.mui.com> at startup. Documentation
   commonly comes from llms.mui.com, mui.com, and versioned documentation hosts listed
   in that catalog. Local startup can succeed while documentation tools are unavailable.
   MUI_DOCS_BASE_URL can point to a compatible internal catalog backend if your

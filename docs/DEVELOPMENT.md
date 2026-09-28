@@ -30,9 +30,9 @@ files do not already exist. Existing local values must be preserved.
 npm.cmd run dev
 ```
 
-Open http://localhost:8080. This builds the client, starts the server, watches source,
+Open <http://localhost:8080>. This builds the client, starts the server, watches source,
 and runs LiveReload. A client-only webpack server is also available with
-`npm.cmd --prefix client start -- --no-open` at http://localhost:3000. Its mock auth
+`npm.cmd --prefix client start -- --no-open` at <http://localhost:3000>. Its mock auth
 responses are separate from the real local server's empty no-auth responses.
 
 ## Daily checks
